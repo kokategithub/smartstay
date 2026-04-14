@@ -1,0 +1,312 @@
+.rooms-page { padding-top: 72px; min-height: 100vh; }
+
+.rooms-header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 40px 24px;
+}
+
+.rooms-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.rooms-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.rooms-header p { font-size: 15px; color: #94a3b8; }
+
+.rooms-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.workplace-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  padding: 10px 16px;
+  color: white;
+  min-width: 320px;
+}
+
+.workplace-input-wrap input {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  flex: 1;
+}
+
+.workplace-input-wrap input::placeholder { color: rgba(255,255,255,0.5); }
+
+.btn-calc-stress {
+  background: #ff385c;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.btn-calc-stress:hover { background: #e31c5f; }
+
+.btn-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-filter:hover { background: rgba(255,255,255,0.2); }
+
+.filter-count {
+  background: #ff385c;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Filters Panel */
+.filters-panel {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 24px;
+  animation: slideIn 0.3s ease;
+}
+
+.filters-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.city-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.city-pill {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #f1f5f9;
+  color: #475569;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.city-pill:hover { background: #e2e8f0; }
+.city-pill.active { background: #ff385c; color: white; border-color: #ff385c; }
+
+.range-inputs {
+  display: flex;
+  gap: 12px;
+}
+
+.range-inputs input[type="range"] {
+  width: 140px;
+  accent-color: #ff385c;
+}
+
+.btn-clear-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-clear-filters:hover { background: #fecaca; }
+
+/* Stress Legend */
+.stress-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  flex-wrap: wrap;
+}
+
+.legend-item { padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+.legend-item.low { background: #dcfce7; color: #16a34a; }
+.legend-item.medium { background: #fef9c3; color: #ca8a04; }
+.legend-item.high { background: #fee2e2; color: #dc2626; }
+
+/* Content */
+.rooms-content { padding: 40px 24px; }
+
+.rooms-grid-main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Loading Skeleton */
+.rooms-loading {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.skeleton-card {
+  height: 380px;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 16px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* No Rooms */
+.no-rooms {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.no-rooms-icon { font-size: 64px; margin-bottom: 16px; }
+
+.no-rooms h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.no-rooms p {
+  font-size: 15px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .rooms-grid-main, .rooms-loading { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .rooms-header-inner { flex-direction: column; align-items: flex-start; }
+  .workplace-input-wrap { min-width: 100%; }
+  .rooms-grid-main, .rooms-loading { grid-template-columns: 1fr; }
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.view-toggle button {
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.6);
+  background: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.view-toggle button.active {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.view-toggle button:hover { color: white; }
+
+/* Map View */
+.map-view-wrap {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 24px;
+  height: calc(100vh - 200px);
+  min-height: 600px;
+}
+
+.map-view-sidebar {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 4px;
+}
+
+.map-view-sidebar .room-card {
+  min-width: 0;
+}
+
+.map-view-sidebar .card-image-wrap {
+  height: 160px;
+}
+
+.map-view-map {
+  position: sticky;
+  top: 88px;
+  height: calc(100vh - 220px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+  .map-view-wrap { grid-template-columns: 1fr; height: auto; }
+  .map-view-map { height: 400px; position: static; }
+}
