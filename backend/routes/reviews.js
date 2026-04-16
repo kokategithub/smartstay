@@ -6,12 +6,23 @@ const Booking = require('../models/Booking');
 const auth = require('../middleware/auth');
 
 // Helper: recalculate room average rating
+// Step 1: Fetch all ratings for the room
+// Step 2: Calculate total sum of all ratings
+// Step 3: Count total number of users who rated
+// Step 4: average_rating = total_ratings / total_number_of_ratings
+// Edge case: if no ratings exist, averageRating = 0
 async function updateRoomRating(roomId) {
   const reviews = await Review.find({ room: roomId });
-  const avg = reviews.length ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
+
+  const totalNumberOfRatings = reviews.length;                                      // Step 3: count
+  const totalRatings = reviews.reduce((sum, r) => sum + r.rating, 0);              // Step 2: sum
+  const averageRating = totalNumberOfRatings > 0                                    // Step 4: average
+    ? totalRatings / totalNumberOfRatings
+    : 0;                                                                            // Edge case: no ratings
+
   await Room.findByIdAndUpdate(roomId, {
-    averageRating: Math.round(avg * 10) / 10,
-    totalReviews: reviews.length
+    averageRating: Math.round(averageRating * 10) / 10,  // rounded to 1 decimal
+    totalReviews: totalNumberOfRatings
   });
 }
 

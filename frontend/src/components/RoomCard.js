@@ -61,8 +61,16 @@ export default function RoomCard({ room, stressInfo }) {
         <div className="card-header">
           <h3 className="card-title">{room.title}</h3>
           <div className="card-rating">
-            <Star size={13} fill="#ff385c" color="#ff385c" />
-            <span>{room.averageRating > 0 ? room.averageRating.toFixed(1) : (4.2 + Math.random() * 0.7).toFixed(1)}</span>
+            {room.averageRating > 0 ? (
+              <>
+                {[1, 2, 3, 4, 5].map(s => (
+                  <Star key={s} size={13} fill={s <= Math.round(room.averageRating) ? '#ff385c' : 'none'} color="#ff385c" />
+                ))}
+                <span>{room.averageRating.toFixed(1)}</span>
+              </>
+            ) : (
+              <span style={{ color: '#94a3b8', fontSize: '12px' }}>No ratings yet</span>
+            )}
           </div>
         </div>
 
