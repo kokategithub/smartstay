@@ -484,8 +484,26 @@ export default function StudentDashboard() {
                     <div className="sd-booking-img" style={{ width: '80px', flexShrink: 0 }}>
                       <img src={getImage(r.room)} alt={r.room?.title} onError={e => { e.target.src = 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400'; }} />
                     </div>
-                    <div className="sd-booking-body">
-                      <h3 style={{ fontSize: '14px', marginBottom: '4px' }}>{r.room?.title}</h3>
+                    <div className="sd-booking-body" style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                        <h3 style={{ fontSize: '14px', marginBottom: '4px' }}>{r.room?.title}</h3>
+                        <button
+                          onClick={async () => {
+                            if (!window.confirm('Delete this review?')) return;
+                            try {
+                              await API.delete(`/reviews/${r._id}`);
+                              setReviews(prev => prev.filter(x => x._id !== r._id));
+                              toast.success('Review deleted');
+                            } catch (err) {
+                              toast.error(err.response?.data?.message || 'Failed to delete review');
+                            }
+                          }}
+                          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444', fontSize: '13px', padding: '2px 6px' }}
+                          title="Delete your review"
+                        >
+                          🗑️ Delete
+                        </button>
+                      </div>
                       <div style={{ display: 'flex', gap: '2px', marginBottom: '6px' }}>
                         {[1,2,3,4,5].map(s => <Star key={s} size={14} fill={s <= r.rating ? '#ff385c' : 'none'} color="#ff385c" />)}
                       </div>
